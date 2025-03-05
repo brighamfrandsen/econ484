@@ -13,6 +13,7 @@ plt.rcParams['savefig.bbox'] = "tight"
 plt.rcParams['lines.linewidth'] = 2
 plt.rcParams['legend.numpoints'] = 1
 plt.rcParams["figure.figsize"] = (5, 2.5)
+plt.rcParams["font.size"] = (6)
 plt.rc('axes', prop_cycle=(
     cycler('color', mglearn.plot_helpers.cm_cycle.colors) +
     cycler('linestyle', ['-', '-', "--", (0, (3, 3)), (0, (1.5, 1.5))])))
