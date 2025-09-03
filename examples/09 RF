@@ -4,19 +4,11 @@
 %cd econ484/utilities
 from preamble import *
 %cd ../data
-Cloning into 'econ484'...
-remote: Enumerating objects: 374, done.
-remote: Counting objects: 100% (86/86), done.
-remote: Compressing objects: 100% (49/49), done.
-remote: Total 374 (delta 61), reused 37 (delta 37), pack-reused 288 (from 1)
-Receiving objects: 100% (374/374), 11.13 MiB | 12.11 MiB/s, done.
-Resolving deltas: 100% (150/150), done.
-/content/econ484/data/econ484/data/econ484/utilities
-/content/econ484/data/econ484/data/econ484/data
-Ensembles of Decision Trees
-Random forests
-Building random forests
-Analyzing random forests
+
+//Ensembles of Decision Trees
+//Random forests
+//Building random forests
+//Analyzing random forests
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import make_moons
@@ -28,15 +20,15 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y,
 forest = RandomForestClassifier(n_estimators=5, random_state=2, bootstrap=True)
 forest.fit(X_train, y_train)
 RandomForestClassifier(n_estimators=5, random_state=2)
-In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook.
-On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.
-This plots the random forests with all the observations on each plot
+#In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook.
+#On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.
+#This plots the random forests with all the observations on each plot
 
 forest.estimators_[1][0]
-DecisionTreeClassifier(max_features='sqrt', random_state=330115571)
-In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook.
-On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.
-import matplotlib.pyplot as plt
+
+#In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook.
+#On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.
+#import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier, BaggingClassifier
 from sklearn.datasets import load_iris
@@ -85,7 +77,7 @@ axes[-1, -1].set_title("Random Forest")
 mglearn.discrete_scatter(X_train[:, 0], X_train[:, 1], y_train)
 plt.show()
 
-This plots only the observations used to train each sub-tree
+#This plots only the observations used to train each sub-tree
 
 from sklearn.datasets import load_breast_cancer
 
@@ -98,8 +90,7 @@ forest.fit(X_train, y_train)
 
 print("Accuracy on training set: {:.3f}".format(forest.score(X_train, y_train)))
 print("Accuracy on test set: {:.3f}".format(forest.score(X_test, y_test)))
-Accuracy on training set: 1.000
-Accuracy on test set: 0.972
+
 yhat_test = forest.predict(X_test)
 fp=sum(yhat_test*(1-y_test))
 fn = sum((1-yhat_test)*y_test)
@@ -107,16 +98,14 @@ tp =  sum(yhat_test*y_test)
 print("Number of false positives: {:.0f}".format(fp))
 print("Number of false negatives: {:.0f}".format(fn))
 y_test.shape
-Number of false positives: 1
-Number of false negatives: 3
-(143,)
+
+
 yhat_testalt = forest.predict_proba(X_test)[:,1]>=.25
 fpalt=sum(yhat_testalt*(1-y_test))
 fnalt = sum((1-yhat_testalt)*y_test)
 print("Number of false positives (alt): {:.0f}".format(fpalt))
 print("Number of false negatives (alt): {:.0f}".format(fnalt))
-Number of false positives (alt): 6
-Number of false negatives (alt): 0
+
 plt.rcParams["font.size"] = (6)
 
 def plot_feature_importances_cancer(model):
@@ -130,8 +119,8 @@ def plot_feature_importances_cancer(model):
 
 plot_feature_importances_cancer(forest)
 
-Strengths, weaknesses, and parameters
-Gradient Boosted Regression Trees (Gradient Boosting Machines)
+#Strengths, weaknesses, and parameters
+#Gradient Boosted Regression Trees (Gradient Boosting Machines)
 from sklearn.ensemble import GradientBoostingClassifier
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -143,34 +132,30 @@ gbrt.fit(X_train, y_train)
 
 print("Accuracy on training set: {:.3f}".format(gbrt.score(X_train, y_train)))
 print("Accuracy on test set: {:.3f}".format(gbrt.score(X_test, y_test)))
-Accuracy on training set: 1.000
-Accuracy on test set: 0.965
+
 gbrt = GradientBoostingClassifier(random_state=0, max_depth=1)
 gbrt.fit(X_train, y_train)
 
 print("Accuracy on training set: {:.3f}".format(gbrt.score(X_train, y_train)))
 print("Accuracy on test set: {:.3f}".format(gbrt.score(X_test, y_test)))
-Accuracy on training set: 0.991
-Accuracy on test set: 0.972
+
 gbrt = GradientBoostingClassifier(random_state=0, learning_rate=0.2)
 gbrt.fit(X_train, y_train)
 
 print("Accuracy on training set: {:.3f}".format(gbrt.score(X_train, y_train)))
 print("Accuracy on test set: {:.3f}".format(gbrt.score(X_test, y_test)))
-Accuracy on training set: 1.000
-Accuracy on test set: 0.972
+
 gbrt = GradientBoostingClassifier(random_state=0, max_depth=1,learning_rate=.2)
 gbrt.fit(X_train, y_train)
 print("Accuracy on training set: {:.3f}".format(gbrt.score(X_train, y_train)))
 print("Accuracy on test set: {:.3f}".format(gbrt.score(X_test, y_test)))
 plot_feature_importances_cancer(gbrt)
-Accuracy on training set: 0.995
-Accuracy on test set: 0.986
+
 
 # Try grid search cross validation on the gradient boosted tree
 # Try grid search on random forest
 # display the out-of-sample accuracy from the CV-ed RF and GBRT
 # display out-of-sample false negative rate and false positive rate from each CV-ed model
-Try random forest or gradient boosted trees on the mortgage data from last time!
+# Try random forest or gradient boosted trees on the mortgage data from last time!
 
  
