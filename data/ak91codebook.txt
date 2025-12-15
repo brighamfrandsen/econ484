@@ -1,0 +1,11 @@
+LWKLYWGE: natural log of weekly wage
+EDUC: years of education
+AGE: age in years
+MARRIED: marital status
+ENOCENT, ESOCENT, MIDATL, MT, NEWENG, SOATL, WNOCENT, WSOCENT: indicators for region of residence
+RACE: indicator for Black
+SMSA: urban residence status
+YOB: year of birth
+_IQOB_2-4: indicators for quarter of birth 2-4
+_ISTATE_2-56: indicators for state of birth
+_IQOBXSTA_*_*: interactions between quarter of birth and state of birth
